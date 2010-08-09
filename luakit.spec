@@ -18,7 +18,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 luakit is a highly configurable, micro-browser framework based on the
 WebKit web content engine and the GTK+ toolkit. It is very fast,
-extensible by Lua
+extensible by Lua.
 
 %prep
 %setup -qc
