@@ -1,7 +1,7 @@
 Summary:	WebKitGTK+ based browser
 Name:		luakit
 Version:	2010.08.07
-Release:	0.1
+Release:	1
 License:	GPL v3 + MIT
 Group:		Applications
 Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
@@ -50,5 +50,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %dir %{_sysconfdir}/xdg/luakit
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/luakit/rc.lua
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/luakit
 %{_datadir}/luakit
