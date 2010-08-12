@@ -1,11 +1,11 @@
 Summary:	WebKitGTK+ based browser
 Name:		luakit
-Version:	2010.08.07
+Version:	2010.08.13
 Release:	1
-License:	GPL v3 + MIT
+License:	GPL v3
 Group:		Applications
 Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	fa0037354e1d603ba9e3b303c070046f
+# Source0-md5:	6c14dffc10b0563900cde5a7176b002c
 Patch0:		%{name}-make.patch
 URL:		http://luakit.org
 BuildRequires:	glib-devel
