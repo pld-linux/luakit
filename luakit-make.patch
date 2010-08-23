@@ -1,13 +1,11 @@
-diff --git a/config.mk b/config.mk
-index 48687f9..acd173d 100644
---- a/config.mk
-+++ b/config.mk
-@@ -9,7 +9,7 @@ MANPREFIX  ?= ${DESTDIR}${PREFIX}/share/man
+--- luakit-2010.08.13/config.mk~	2010-08-20 17:27:18.000000000 +0200
++++ luakit-2010.08.13/config.mk	2010-08-23 15:22:45.000000000 +0200
+@@ -9,7 +9,7 @@
  DOCDIR     ?= ${DESTDIR}${PREFIX}/share/luakit/docs
  
  # Generate includes and libs
--PKGS := gtk+-2.0 gthread-2.0 webkit-1.0 lua libxdg-basedir
-+PKGS := gtk+-2.0 gthread-2.0 webkit-1.0 lua51 libxdg-basedir
+-PKGS := gtk+-2.0 gthread-2.0 webkit-1.0 lua
++PKGS := gtk+-2.0 gthread-2.0 webkit-1.0 lua51
  INCS := $(shell pkg-config --cflags ${PKGS}) -I./
  LIBS := $(shell pkg-config --libs ${PKGS})
  
