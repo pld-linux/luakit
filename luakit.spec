@@ -1,11 +1,12 @@
+%define		subver	123
 Summary:	WebKitGTK+ based browser
 Name:		luakit
 Version:	2010.08.13
-Release:	1
+Release:	1.git.%{subver}.1
 License:	GPL v3
 Group:		Applications
-Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	6c14dffc10b0563900cde5a7176b002c
+Source0:	http://execve.pl/PLD/%{name}-%{version}-%{subver}.tar.gz
+# Source0-md5:	adb13d6f515542cac89023c0a7ce49bb
 Patch0:		%{name}-make.patch
 URL:		http://luakit.org
 BuildRequires:	glib-devel
