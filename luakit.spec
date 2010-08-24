@@ -1,5 +1,6 @@
 %define		subver	123
 Summary:	WebKitGTK+ based browser
+Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Name:		luakit
 Version:	2010.08.13
 Release:	1.git.%{subver}.1
@@ -20,6 +21,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 luakit is a highly configurable, micro-browser framework based on the
 WebKit web content engine and the GTK+ toolkit. It is very fast,
 extensible by Lua.
+
+%description  -l hu.UTF-8
+luakit egy magas szinten konfigurálható, micro-böngésző keretrendszer
+WebKit motorral és GTK+ grafikus felületettel. Nagyon gyors, és Lua
+nyelven bővíthető.
 
 %prep
 %setup -qc
