@@ -1,19 +1,19 @@
 Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Name:		luakit
-Version:	2010.08.13
+Version:	2010.08.30
 Release:	1
 License:	GPL v3
 Group:		Applications
 Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	6c14dffc10b0563900cde5a7176b002c
+# Source0-md5:	fb3a489988d3d2bd47671f13ecf5a6d7
 Patch0:		%{name}-make.patch
 URL:		http://luakit.org
 BuildRequires:	glib-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	gtk-webkit-devel
-BuildRequires:	libxdg-basedir-devel
 BuildRequires:	lua51-devel
+Requires:	halp2man
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -55,6 +55,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING PATCHES README.md
 
 %dir %{_sysconfdir}/xdg/luakit
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/luakit/rc.lua
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/luakit/*.lua
 %attr(755,root,root) %{_bindir}/luakit
 %{_datadir}/luakit
+%{_pixmapsdir}/luakit.png
+%{_mandir}/man1/luakit.1*
+%{_desktopdir}/luakit.desktop
