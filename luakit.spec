@@ -14,7 +14,7 @@ BuildRequires:	gtk+2-devel
 BuildRequires:	gtk-webkit-devel
 BuildRequires:	lua51-devel
 Requires:	dmenu
-Requires:	halp2man
+Requires:	help2man
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
