@@ -13,6 +13,7 @@ BuildRequires:	glib-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	gtk-webkit-devel
 BuildRequires:	lua51-devel
+Requires:	dmenu
 Requires:	halp2man
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
