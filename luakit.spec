@@ -10,11 +10,14 @@ Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{ve
 Patch0:		%{name}-make.patch
 URL:		http://luakit.org
 BuildRequires:	glib-devel
+BuildRequires:	gperf
 BuildRequires:	gtk+2-devel
 BuildRequires:	gtk-webkit-devel
+BuildRequires:	help2man
+BuildRequires:	libsoup-devel
 BuildRequires:	lua51-devel
 Requires:	dmenu
-Requires:	help2man
+Requires:	wget
 Suggests:	ca-certificates
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
