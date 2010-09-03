@@ -15,6 +15,7 @@ BuildRequires:	gtk-webkit-devel
 BuildRequires:	lua51-devel
 Requires:	dmenu
 Requires:	help2man
+Suggests:	ca-certificates
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
