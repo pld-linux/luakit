@@ -1,0 +1,8 @@
+--- luakit-2010.09.24/build-utils/gentokens.lua~	2010-09-23 19:17:21.000000000 +0200
++++ luakit-2010.09.24/build-utils/gentokens.lua	2010-09-24 11:44:43.000000000 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env lua
++#!/usr/bin/lua51
+ 
+ -- build-utils/gentokens.lua - gen tokenize lib
+ --
