@@ -1,8 +1,17 @@
+
+%bcond_with	git		# fetch the newest version from git
+
+%if %{with git}
+%define git_url		%{?luakit_git_url}%{!?luakit_git_url:git://github.com/mason-larobina/luakit}
+%define git_branch	%{?luakit_git_branch}%{!?luakit_git_branch:develop}
+%endif
+
+%define		rel	1
 Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Name:		luakit
 Version:	2010.09.24
-Release:	1
+Release:	%{rel}%{?with_git:.git.%(date +%s)}
 License:	GPL v3
 Group:		Applications
 Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
@@ -10,6 +19,7 @@ Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{ve
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-shebang.patch
 URL:		http://luakit.org
+%{?with_git:BuildRequires:	git-core}
 BuildRequires:	glib-devel
 BuildRequires:	gtk+2-devel
 BuildRequires:	gtk-webkit-devel
@@ -33,22 +43,31 @@ WebKit motorral és GTK+ grafikus felületettel. Nagyon gyors, és Lua
 nyelven bővíthető.
 
 %prep
+%if %{without git}
 %setup -qc
 mv mason-larobina-%{name}-*/* .
+%else
+%setup -Tc
+git clone %{git_url} luakit.git
+cd luakit.git; git checkout %{git_branch}; cd -
+mv luakit.git/* .
+%endif
 
+%if 0%{!?luakit_patched:1}
 %patch0 -p1
 %patch1 -p1
+%endif
 
 %build
 CFLAGS='%{rpmcflags}' \
 LDFLAGS='%{rpmldflags}' \
-PREFIX=%{_prefix} \
-%{__make}
+%{__make} \
+	PREFIX=%{_prefix}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-PREFIX=%{_prefix} \
 %{__make} install \
+	PREFIX=%{_prefix} \
 	DESTDIR=$RPM_BUILD_ROOT
 
 find $RPM_BUILD_ROOT
