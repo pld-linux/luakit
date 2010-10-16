@@ -46,16 +46,17 @@ nyelven bővíthető.
 %if %{without git}
 %setup -qc
 mv mason-larobina-%{name}-*/* .
+%patch0 -p1
+%patch1 -p1
 %else
 %setup -Tc
 git clone %{git_url} luakit.git
 cd luakit.git; git checkout %{git_branch}; cd -
 mv luakit.git/* .
-%endif
-
-%if 0%{!?luakit_patched:1}
+%{!?luakit_skip_patches:
 %patch0 -p1
 %patch1 -p1
+}
 %endif
 
 %build
