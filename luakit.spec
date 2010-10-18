@@ -18,7 +18,7 @@ Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{ve
 # Source0-md5:	1cf30b806f4758a1def0eabe4c86c1e2
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-shebang.patch
-URL:		http://luakit.org
+URL:		http://luakit.org/
 %{?with_git:BuildRequires:	git-core}
 BuildRequires:	glib-devel
 BuildRequires:	gtk+2-devel
@@ -49,10 +49,8 @@ mv mason-larobina-%{name}-*/* .
 %patch0 -p1
 %patch1 -p1
 %else
-%setup -Tc
-git clone %{git_url} luakit.git
-cd luakit.git; git checkout %{git_branch}; cd -
-mv luakit.git/* .
+%setup -qcT
+git clone -b %{git_branch} %{git_url} .
 %{!?luakit_skip_patches:
 %patch0 -p1
 %patch1 -p1
@@ -60,8 +58,8 @@ mv luakit.git/* .
 %endif
 
 %build
-CFLAGS='%{rpmcflags}' \
-LDFLAGS='%{rpmldflags}' \
+CFLAGS="%{rpmcflags}" \
+LDFLAGS="%{rpmldflags}" \
 %{__make} \
 	PREFIX=%{_prefix}
 
