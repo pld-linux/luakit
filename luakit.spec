@@ -10,12 +10,12 @@
 Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Name:		luakit
-Version:	2010.09.24
+Version:	2010.12.25
 Release:	%{rel}%{?with_git:.git.%(date +%s)}
 License:	GPL v3
 Group:		Applications
 Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	1cf30b806f4758a1def0eabe4c86c1e2
+# Source0-md5:	b87dc75ed64ef701f75db68fc2c1bd3c
 Patch0:		%{name}-make.patch
 Patch1:		%{name}-shebang.patch
 URL:		http://luakit.org/
@@ -69,8 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 	PREFIX=%{_prefix} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-find $RPM_BUILD_ROOT
-rm -rf $RPM_BUILD_ROOT%{_datadir}/%{name}/docs
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/%{name}/docs
 
 %clean
 rm -rf $RPM_BUILD_ROOT
