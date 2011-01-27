@@ -27,6 +27,7 @@ BuildRequires:	help2man
 BuildRequires:	libsoup-devel
 BuildRequires:	lua51
 BuildRequires:	lua51-devel
+BuildRequires:	pkgconfig
 Requires:	dmenu
 Requires:	wget
 Suggests:	ca-certificates
