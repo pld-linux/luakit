@@ -9,15 +9,15 @@
 %define		rel	1
 Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
+Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
 Name:		luakit
-Version:	2010.12.25
+Version:	2011.04.13
 Release:	%{rel}%{?with_git:.git.%(date +%s)}
 License:	GPL v3
 Group:		Applications
 Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	b87dc75ed64ef701f75db68fc2c1bd3c
-Patch0:		%{name}-make.patch
-Patch1:		%{name}-shebang.patch
+# Source0-md5:	277418eeef073beb0a8e96472aa0a3ad
+Patch0:		%{name}-shebang.patch
 URL:		http://luakit.org/
 %{?with_git:BuildRequires:	git-core}
 BuildRequires:	glib-devel
@@ -38,23 +38,26 @@ luakit is a highly configurable, micro-browser framework based on the
 WebKit web content engine and the GTK+ toolkit. It is very fast,
 extensible by Lua.
 
-%description  -l hu.UTF-8
+%description -l hu.UTF-8
 luakit egy magas szinten konfigurálható, micro-böngésző keretrendszer
 WebKit motorral és GTK+ grafikus felületettel. Nagyon gyors, és Lua
 nyelven bővíthető.
+
+%description -l pl.UTF-8
+luakit jest wysoko konfigurowalnym frameworkiem mikro-przeglądarki
+opartym na silniku webowym WebKit oraz GTK+. Jest szybki i
+rozszeezalny przez Lua.
 
 %prep
 %if %{without git}
 %setup -qc
 mv mason-larobina-%{name}-*/* .
 %patch0 -p1
-%patch1 -p1
 %else
 %setup -qcT
 git clone -b %{git_branch} %{git_url} .
 %{!?luakit_skip_patches:
 %patch0 -p1
-%patch1 -p1
 }
 %endif
 
