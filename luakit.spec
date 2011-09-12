@@ -11,12 +11,12 @@ Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
 Name:		luakit
-Version:	2011.05.06
+Version:	2011.07.22
 Release:	%{rel}%{?with_git:.git.%(date +%s)}
 License:	GPL v3
 Group:		Applications
 Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	eaf96d02aaecc1d8ba4f62f38565497f
+# Source0-md5:	f682275aa7ebc54beed187481dc4a1bc
 Patch0:		%{name}-shebang.patch
 URL:		http://luakit.org/
 %{?with_git:BuildRequires:	git-core}
@@ -25,6 +25,7 @@ BuildRequires:	gtk+2-devel
 BuildRequires:	gtk-webkit-devel
 BuildRequires:	help2man
 BuildRequires:	libsoup-devel
+BuildRequires:	libunique-devel
 BuildRequires:	lua51
 BuildRequires:	lua51-devel
 BuildRequires:	pkgconfig
