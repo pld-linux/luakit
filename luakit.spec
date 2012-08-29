@@ -6,17 +6,17 @@
 %define git_branch	%{?luakit_git_branch}%{!?luakit_git_branch:develop}
 %endif
 
-%define		rel	2
+%define		rel	1
 Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
 Name:		luakit
-Version:	2011.07.22
+Version:	2012.03.25
 Release:	%{rel}%{?with_git:.git.%(date +%s)}
 License:	GPL v3
 Group:		Applications
 Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	f682275aa7ebc54beed187481dc4a1bc
+# Source0-md5:	e25aaeacfa5758127b3f677eafba9aa2
 Patch0:		%{name}-shebang.patch
 URL:		http://luakit.org/
 %{?with_git:BuildRequires:	git-core}
