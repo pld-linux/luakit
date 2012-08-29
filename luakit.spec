@@ -6,7 +6,7 @@
 %define git_branch	%{?luakit_git_branch}%{!?luakit_git_branch:develop}
 %endif
 
-%define		rel	1
+%define		rel	2
 Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
