@@ -75,6 +75,8 @@ install -d $RPM_BUILD_ROOT%{_libdir}/luakit
         MANPREFIX=%{_mandir} \
         PIXMAPDIR=%{_pixmapsdir} \
         APPDIR=%{_desktopdir} \
+	%{?with_luajit:USE_LUAJIT=1 LUA_BIN_NAME="/usr/bin/luajit -O2"} \
+	%{!?with_luajit:USE_LUAJIT=0 LUA_BIN_NAME="/usr/bin/lua5.1"}
 
 if [ "%{_prefix}/lib" != "%{_libdir}" ]; then
 	%{__mv} $RPM_BUILD_ROOT%{_prefix}/lib/luakit/luakit.so $RPM_BUILD_ROOT%{_libdir}/luakit
