@@ -1,37 +1,35 @@
+%bcond_without	luajit		# use lua interpreter
 
-%bcond_with	git		# fetch the newest version from git
-
-%if %{with git}
-%define git_url		%{?luakit_git_url}%{!?luakit_git_url:git://github.com/mason-larobina/luakit}
-%define git_branch	%{?luakit_git_branch}%{!?luakit_git_branch:develop}
+%ifnarch %{ix86} %{x8664} %{arm} aarch64 mips mips64 mipsel ppc
+%undefine	with_luajit
 %endif
 
-%define		rel	1
 Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
 Name:		luakit
-Version:	2012.03.25
-Release:	%{rel}%{?with_git:.git.%(date +%s)}
+Version:	2.3
+Release:	1
+Epoch:		1
 License:	GPL v3
 Group:		Applications
-Source0:	http://github.com/mason-larobina/luakit/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	e25aaeacfa5758127b3f677eafba9aa2
+Source0:	https://github.com/luakit/luakit/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	056187ee95e0ac6eff84f7ff9fd2ed51
 Patch0:		%{name}-shebang.patch
 URL:		http://luakit.org/
-%{?with_git:BuildRequires:	git-core}
-BuildRequires:	glib-devel
-BuildRequires:	gtk+2-devel
-BuildRequires:	gtk-webkit-devel
-BuildRequires:	help2man
-BuildRequires:	libsoup-devel
-BuildRequires:	libunique-devel
+BuildRequires:	glib2-devel
+BuildRequires:	gtk+3-devel
+BuildRequires:	gtk-webkit4-devel
+%if %{with luajit}
+BuildRequires:	luajit
+BuildRequires:	luajit-devel
+%else
 BuildRequires:	lua51
 BuildRequires:	lua51-devel
+%endif
+BuildRequires:	lua51-filesystem
 BuildRequires:	pkgconfig
-Requires:	dmenu
-Requires:	wget
-Suggests:	ca-certificates
+BuildRequires:	sqlite3-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -50,42 +48,50 @@ opartym na silniku webowym WebKit oraz GTK+. Jest szybki i
 rozszeezalny przez Lua.
 
 %prep
-%if %{without git}
-%setup -qc
-mv mason-larobina-%{name}-*/* .
-%patch0 -p1
-%else
-%setup -qcT
-git clone -b %{git_branch} %{git_url} .
-%{!?luakit_skip_patches:
-%patch0 -p1
-}
-%endif
+%setup -q
 
 %build
-CFLAGS="%{rpmcflags}" \
-LDFLAGS="%{rpmldflags}" \
+export CFLAGS="%{rpmcflags}"
+export LDFLAGS="%{rpmldflags}"
 %{__make} \
-	PREFIX=%{_prefix}
+	CC="%{__cc}" \
+	PREFIX=%{_prefix} \
+	LIBDIR=%{_libdir}/luakit \
+	MANPREFIX=%{_mandir} \
+	PIXMAPDIR=%{_pixmapsdir} \
+	APPDIR=%{_desktopdir} \
+	%{?with_luajit:USE_LUAJIT=1 LUA_BIN_NAME="/usr/bin/luajit -O2"} \
+	%{!?with_luajit:USE_LUAJIT=0 LUA_BIN_NAME="/usr/bin/lua5.1"}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} install \
-	PREFIX=%{_prefix} \
-	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/%{name}/docs
+install -d $RPM_BUILD_ROOT%{_libdir}/luakit
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	PREFIX=%{_prefix} \
+        LIBDIR=%{_libdir}/luakit \
+        MANPREFIX=%{_mandir} \
+        PIXMAPDIR=%{_pixmapsdir} \
+        APPDIR=%{_desktopdir} \
+
+if [ "%{_prefix}/lib" != "%{_libdir}" ]; then
+	%{__mv} $RPM_BUILD_ROOT%{_prefix}/lib/luakit/luakit.so $RPM_BUILD_ROOT%{_libdir}/luakit
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING PATCHES README.md
+%doc AUTHORS README.md
 
 %dir %{_sysconfdir}/xdg/luakit
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/xdg/luakit/*.lua
 %attr(755,root,root) %{_bindir}/luakit
+%dir %{_libdir}/luakit
+%attr(755,root,root) %{_libdir}/luakit/luakit.so
 %{_datadir}/luakit
 %{_pixmapsdir}/luakit.png
 %{_mandir}/man1/luakit.1*
