@@ -8,13 +8,13 @@ Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
 Name:		luakit
-Version:	2.3
+Version:	2.3.3
 Release:	1
 Epoch:		1
 License:	GPL v3
 Group:		Applications
 Source0:	https://github.com/luakit/luakit/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	056187ee95e0ac6eff84f7ff9fd2ed51
+# Source0-md5:	378fdc9b857ac9e813fed1cc3218f840
 Patch0:		%{name}-shebang.patch
 URL:		http://luakit.org/
 BuildRequires:	glib2-devel
@@ -79,10 +79,6 @@ install -d $RPM_BUILD_ROOT%{_libdir}/luakit
 	%{?with_luajit:USE_LUAJIT=1 LUA_BIN_NAME="/usr/bin/luajit -O2"} \
 	%{!?with_luajit:USE_LUAJIT=0 LUA_BIN_NAME="/usr/bin/lua5.1"}
 
-if [ "%{_prefix}/lib" != "%{_libdir}" ]; then
-	%{__mv} $RPM_BUILD_ROOT%{_prefix}/lib/luakit/luakit.so $RPM_BUILD_ROOT%{_libdir}/luakit
-fi
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -103,5 +99,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/luakit/luakit.so
 %{_datadir}/luakit
 %{_pixmapsdir}/luakit.png
+%{_pixmapsdir}/luakit.svg
 %{_mandir}/man1/luakit.1*
 %{_desktopdir}/luakit.desktop
