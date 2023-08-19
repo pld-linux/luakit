@@ -30,6 +30,7 @@ BuildRequires:	lua51-devel
 BuildRequires:	lua51-filesystem
 BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel
+Requires(post,postun):	desktop-file-utils
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -84,6 +85,12 @@ fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%update_desktop_database_post
+
+%postun
+%update_desktop_database_postun
 
 %files
 %defattr(644,root,root,755)
