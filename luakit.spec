@@ -8,18 +8,18 @@ Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
 Name:		luakit
-Version:	2.3.3
+Version:	2.3.4
 Release:	1
 Epoch:		1
 License:	GPL v3
 Group:		Applications
 Source0:	https://github.com/luakit/luakit/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	378fdc9b857ac9e813fed1cc3218f840
+# Source0-md5:	8cb2dc1a171112d204cb8ac186a722ea
 Patch0:		%{name}-shebang.patch
 URL:		http://luakit.org/
 BuildRequires:	glib2-devel
 BuildRequires:	gtk+3-devel
-BuildRequires:	gtk-webkit4-devel
+BuildRequires:	gtk-webkit4.1-devel
 %if %{with luajit}
 BuildRequires:	luajit
 BuildRequires:	luajit-devel
@@ -72,10 +72,10 @@ install -d $RPM_BUILD_ROOT%{_libdir}/luakit
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	PREFIX=%{_prefix} \
-        LIBDIR=%{_libdir}/luakit \
-        MANPREFIX=%{_mandir} \
-        PIXMAPDIR=%{_pixmapsdir} \
-        APPDIR=%{_desktopdir} \
+	LIBDIR=%{_libdir}/luakit \
+	MANPREFIX=%{_mandir} \
+	PIXMAPDIR=%{_pixmapsdir} \
+	APPDIR=%{_desktopdir} \
 	%{?with_luajit:USE_LUAJIT=1 LUA_BIN_NAME="/usr/bin/luajit -O2"} \
 	%{!?with_luajit:USE_LUAJIT=0 LUA_BIN_NAME="/usr/bin/lua5.1"}
 
