@@ -9,7 +9,7 @@ Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
 Name:		luakit
 Version:	2.3.6
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v3
 Group:		Applications
