@@ -9,7 +9,7 @@ Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
 Name:		luakit
 Version:	2.3.6
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL v3
 Group:		Applications
@@ -23,11 +23,12 @@ BuildRequires:	gtk-webkit4.1-devel
 %if %{with luajit}
 BuildRequires:	luajit
 BuildRequires:	luajit-devel
+BuildRequires:	luajit-filesystem
 %else
 BuildRequires:	lua51
 BuildRequires:	lua51-devel
-%endif
 BuildRequires:	lua51-filesystem
+%endif
 BuildRequires:	pkgconfig
 BuildRequires:	sqlite3-devel
 Requires(post,postun):	desktop-file-utils
