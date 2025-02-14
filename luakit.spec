@@ -8,13 +8,13 @@ Summary:	WebKitGTK+ based browser
 Summary(hu.UTF-8):	WebKitGTK+ alapú böngésző
 Summary(pl.UTF-8):	Przeglądarka oparta na WebKitGTK+
 Name:		luakit
-Version:	2.3.6
-Release:	3
+Version:	2.4.0
+Release:	1
 Epoch:		1
 License:	GPL v3
 Group:		Applications
 Source0:	https://github.com/luakit/luakit/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	f9e623c23ce560fdfd14d9ccb9ef71e6
+# Source0-md5:	b3b3cb72ee55212a79900a0a536ed627
 Patch0:		%{name}-shebang.patch
 URL:		http://luakit.org/
 BuildRequires:	glib2-devel
